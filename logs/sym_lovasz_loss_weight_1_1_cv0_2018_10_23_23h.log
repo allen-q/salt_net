@@ -812,3 +812,16 @@ Parameter Group 1
 23/10/2018 18:57:32 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Epoch 102/150
 23/10/2018 18:57:32 - sym_lovasz_loss_weight_1_1_cv0 - INFO - --------------------
 23/10/2018 18:57:32 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Pushing logs to git.
+23/10/2018 19:01:16 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Train IOU: 0.8486, Acc: 0.9683, Loss: [0.1323, 0.2149, 0.3472] at epoch 102
+23/10/2018 19:01:35 - sym_lovasz_loss_weight_1_1_cv0 - INFO - ['../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-1-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-2-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-3-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-4-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-5-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-6-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-7-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-8-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-9-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-10-Of-10']
+23/10/2018 19:01:35 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Best Val Mean IOU so far: 0.82375
+23/10/2018 19:01:35 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Val   IOU: 0.8237, Acc: 0.9615, Best Val IOU: 0.8237 at epoch 102
+23/10/2018 19:01:35 - sym_lovasz_loss_weight_1_1_cv0 - INFO - LR: [3.59e-05, 0.0003586]
+23/10/2018 19:01:35 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Epoch 103/150
+23/10/2018 19:01:35 - sym_lovasz_loss_weight_1_1_cv0 - INFO - --------------------
+23/10/2018 19:05:04 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Train IOU: 0.8376, Acc: 0.9632, Loss: [0.1498, 0.2272, 0.377] at epoch 103
+23/10/2018 19:05:20 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Val   IOU: 0.8200, Acc: 0.9598, Best Val IOU: 0.8237 at epoch 103
+23/10/2018 19:05:20 - sym_lovasz_loss_weight_1_1_cv0 - INFO - LR: [3.52e-05, 0.0003519]
+23/10/2018 19:05:20 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Epoch 104/150
+23/10/2018 19:05:20 - sym_lovasz_loss_weight_1_1_cv0 - INFO - --------------------
+23/10/2018 19:05:20 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Pushing logs to git.
