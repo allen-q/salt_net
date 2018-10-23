@@ -1,0 +1,235 @@
+23/10/2018 12:23:29 - sym_lovasz_loss_weight_1_1_cv0 - INFO - sym_lovasz_loss_weight_1_1_cv0, based on salt_model_v37.4_high_lovasz_loss. use symetric lavasz loss. Set lavasz loss and bce weight to 1:1
+23/10/2018 12:23:39 - sym_lovasz_loss_weight_1_1_cv0 - INFO - 
+p = Pipeline_Salt()
+p.flip_left_right(probability=0.5)
+p.rotate90(0.25)
+p.rotate270(0.25)
+p.random_brightness(probability=0.5, min_factor=0.8, max_factor=1.2)
+p.random_contrast(probability=0.5, min_factor=0.8, max_factor=1.2)
+p.rotate_random_align(probability=0.5)
+p.crop_random_align(probability=0.5, min_factor=0.6, max_factor=1.0, mask_diff_pct=0.2)
+
+23/10/2018 12:23:39 - sym_lovasz_loss_weight_1_1_cv0 - INFO - 
+train_data_params = {'batch_size': 32,
+                     #'sampler': weighted_sampler,
+                     'shuffle': True,
+                     'drop_last': False}
+
+val_data_params = {'batch_size': 32,
+                   'shuffle': True,
+                   'drop_last': False}
+
+train_dataLoader = (
+    DataLoader(SaltDataset(X_train, y_train, depth_train,
+                           np.zeros_like(X_train_mean_img), out_size=128,  out_ch=1,
+                           transform=p.torch_transform()), **train_data_params)
+)
+
+val_dataLoader = (
+    DataLoader(SaltDataset(X_val, y_val, depth_val, 
+                           np.zeros_like(X_train_mean_img), out_size=128, out_ch=1), **val_data_params)
+)
+
+dataloaders = {'train': train_dataLoader, 'val':val_dataLoader}
+
+23/10/2018 12:23:39 - sym_lovasz_loss_weight_1_1_cv0 - INFO - 
+saltnet = UResNet(pretrained=True)
+loss_fn_bce = nn.BCEWithLogitsLoss(pos_weight=torch.tensor(2.0).type(dtype))
+#loss_focal = FocalLoss(0.25, 2, logits=True)
+loss_lovasz_hinge = LovaszHingeLoss(symetric=True)
+resnet_params = (
+    list(saltnet.conv1.parameters()) + 
+    list(saltnet.encoder2.parameters()) + 
+    list(saltnet.encoder3.parameters()) + 
+    list(saltnet.encoder4.parameters()) + 
+    list(saltnet.encoder5.parameters())
+)
+
+unet_params = (
+    list(saltnet.center.parameters()) + 
+    list(saltnet.decoder5.parameters()) + 
+    list(saltnet.decoder4.parameters()) + 
+    list(saltnet.decoder3.parameters()) + 
+    list(saltnet.decoder2.parameters()) + 
+    list(saltnet.decoder1.parameters())  + 
+    list(saltnet.se_f.parameters()) + 
+    list(saltnet.outc.parameters())
+)
+optimizer = optim.Adam([    
+    {'params': resnet_params, 'lr': 1e-4},
+    {'params': unet_params, 'lr': 1e-3},
+], weight_decay=0.0001)
+
+
+scheduler = PolyLR(optimizer, [1e-4, 1e-3], lr_decay_iter=1, max_iter=150, power=0.9)
+model_save_name = model_file_suffix
+log.info(model_save_name)
+
+23/10/2018 12:23:39 - sym_lovasz_loss_weight_1_1_cv0 - INFO - 
+train_params = {
+    'model_save_name': model_save_name,
+    'save_model_every': 20,
+    'save_log_every': 2,
+    'num_epochs': 150,
+    'log': log,
+    'mask_cutoff': 0.,
+    'model_save_iou_threshold': 0.81
+    }
+
+23/10/2018 12:23:39 - sym_lovasz_loss_weight_1_1_cv0 - INFO - 
+train_model(saltnet, dataloaders, (loss_fn_bce, loss_lovasz_hinge), (1, 1), optimizer, scheduler, train_params, all_data)
+
+23/10/2018 12:23:44 - sym_lovasz_loss_weight_1_1_cv0 - INFO - ../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp
+23/10/2018 12:23:44 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Start Training...
+23/10/2018 12:23:44 - sym_lovasz_loss_weight_1_1_cv0 - INFO - ({'train': <torch.utils.data.dataloader.DataLoader object at 0x7fd33c20c400>, 'val': <torch.utils.data.dataloader.DataLoader object at 0x7fd33c20c048>}, (BCEWithLogitsLoss(), LovaszHingeLoss()), (1, 1), Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.0001
+
+Parameter Group 1
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.0001
+), <salt_func_lib.PolyLR object at 0x7fd33b0bb7b8>, {'model_save_name': '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp', 'save_model_every': 20, 'save_log_every': 2, 'num_epochs': 150, 'log': <Logger sym_lovasz_loss_weight_1_1_cv0 (DEBUG)>, 'mask_cutoff': 0.0, 'model_save_iou_threshold': 0.81})
+23/10/2018 12:23:44 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Epoch 1/150
+23/10/2018 12:23:44 - sym_lovasz_loss_weight_1_1_cv0 - INFO - --------------------
+23/10/2018 12:25:22 - sym_lovasz_loss_weight_1_1_cv0 - INFO - 
+p = Pipeline_Salt()
+p.flip_left_right(probability=0.5)
+p.rotate90(0.25)
+p.rotate270(0.25)
+p.random_brightness(probability=0.5, min_factor=0.8, max_factor=1.2)
+p.random_contrast(probability=0.5, min_factor=0.8, max_factor=1.2)
+p.rotate_random_align(probability=0.5)
+p.crop_random_align(probability=0.5, min_factor=0.6, max_factor=1.0, mask_diff_pct=0.2)
+
+23/10/2018 12:25:22 - sym_lovasz_loss_weight_1_1_cv0 - INFO - 
+train_data_params = {'batch_size': 32,
+                     #'sampler': weighted_sampler,
+                     'shuffle': True,
+                     'drop_last': False}
+
+val_data_params = {'batch_size': 32,
+                   'shuffle': True,
+                   'drop_last': False}
+
+train_dataLoader = (
+    DataLoader(SaltDataset(X_train, y_train, depth_train,
+                           np.zeros_like(X_train_mean_img), out_size=128,  out_ch=1,
+                           transform=p.torch_transform()), **train_data_params)
+)
+
+val_dataLoader = (
+    DataLoader(SaltDataset(X_val, y_val, depth_val, 
+                           np.zeros_like(X_train_mean_img), out_size=128, out_ch=1), **val_data_params)
+)
+
+dataloaders = {'train': train_dataLoader, 'val':val_dataLoader}
+
+23/10/2018 12:25:22 - sym_lovasz_loss_weight_1_1_cv0 - INFO - 
+saltnet = UResNet(pretrained=True)
+loss_fn_bce = nn.BCEWithLogitsLoss(pos_weight=torch.tensor(2.0).type(dtype))
+#loss_focal = FocalLoss(0.25, 2, logits=True)
+loss_lovasz_hinge = LovaszHingeLoss(symetric=True)
+resnet_params = (
+    list(saltnet.conv1.parameters()) + 
+    list(saltnet.encoder2.parameters()) + 
+    list(saltnet.encoder3.parameters()) + 
+    list(saltnet.encoder4.parameters()) + 
+    list(saltnet.encoder5.parameters())
+)
+
+unet_params = (
+    list(saltnet.center.parameters()) + 
+    list(saltnet.decoder5.parameters()) + 
+    list(saltnet.decoder4.parameters()) + 
+    list(saltnet.decoder3.parameters()) + 
+    list(saltnet.decoder2.parameters()) + 
+    list(saltnet.decoder1.parameters())  + 
+    list(saltnet.se_f.parameters()) + 
+    list(saltnet.outc.parameters())
+)
+optimizer = optim.Adam([    
+    {'params': resnet_params, 'lr': 1e-4},
+    {'params': unet_params, 'lr': 1e-3},
+], weight_decay=0.0001)
+
+
+scheduler = PolyLR(optimizer, [1e-4, 1e-3], lr_decay_iter=1, max_iter=150, power=0.9)
+model_save_name = model_file_suffix
+log.info(model_save_name)
+
+23/10/2018 12:25:22 - sym_lovasz_loss_weight_1_1_cv0 - INFO - 
+train_params = {
+    'model_save_name': model_save_name,
+    'save_model_every': 20,
+    'save_log_every': 2,
+    'num_epochs': 150,
+    'log': log,
+    'mask_cutoff': 0.,
+    'model_save_iou_threshold': 0.9
+    }
+
+23/10/2018 12:25:22 - sym_lovasz_loss_weight_1_1_cv0 - INFO - 
+train_model(saltnet, dataloaders, (loss_fn_bce, loss_lovasz_hinge), (1, 1), optimizer, scheduler, train_params, all_data)
+
+23/10/2018 12:25:23 - sym_lovasz_loss_weight_1_1_cv0 - INFO - ../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp
+23/10/2018 12:25:23 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Start Training...
+23/10/2018 12:25:23 - sym_lovasz_loss_weight_1_1_cv0 - INFO - ({'train': <torch.utils.data.dataloader.DataLoader object at 0x7fd33b0d1400>, 'val': <torch.utils.data.dataloader.DataLoader object at 0x7fd33b0d14e0>}, (BCEWithLogitsLoss(), LovaszHingeLoss()), (1, 1), Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.0001
+
+Parameter Group 1
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.0001
+), <salt_func_lib.PolyLR object at 0x7fd336b5fda0>, {'model_save_name': '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp', 'save_model_every': 20, 'save_log_every': 2, 'num_epochs': 150, 'log': <Logger sym_lovasz_loss_weight_1_1_cv0 (DEBUG)>, 'mask_cutoff': 0.0, 'model_save_iou_threshold': 0.9})
+23/10/2018 12:25:23 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Epoch 1/150
+23/10/2018 12:25:23 - sym_lovasz_loss_weight_1_1_cv0 - INFO - --------------------
+23/10/2018 12:28:51 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Train IOU: 0.5112, Acc: 0.8336, Loss: [0.6139, 0.7498, 1.3637] at epoch 1
+23/10/2018 12:29:09 - sym_lovasz_loss_weight_1_1_cv0 - INFO - ['../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-1-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-2-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-3-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-4-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-5-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-6-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-7-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-8-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-9-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-10-Of-10']
+23/10/2018 12:29:09 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Best Val Mean IOU so far: 0.570875
+23/10/2018 12:29:09 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Val   IOU: 0.5709, Acc: 0.8873, Best Val IOU: 0.5709 at epoch 1
+23/10/2018 12:29:09 - sym_lovasz_loss_weight_1_1_cv0 - INFO - LR: [9.94e-05, 0.000994]
+23/10/2018 12:29:09 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Epoch 2/150
+23/10/2018 12:29:09 - sym_lovasz_loss_weight_1_1_cv0 - INFO - --------------------
+23/10/2018 12:29:09 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Pushing logs to git.
+23/10/2018 12:32:47 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Train IOU: 0.6125, Acc: 0.8862, Loss: [0.4549, 0.5813, 1.0362] at epoch 2
+23/10/2018 12:33:05 - sym_lovasz_loss_weight_1_1_cv0 - INFO - ['../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-1-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-2-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-3-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-4-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-5-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-6-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-7-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-8-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-9-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-10-Of-10']
+23/10/2018 12:33:05 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Best Val Mean IOU so far: 0.66125
+23/10/2018 12:33:05 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Val   IOU: 0.6613, Acc: 0.9265, Best Val IOU: 0.6613 at epoch 2
+23/10/2018 12:33:05 - sym_lovasz_loss_weight_1_1_cv0 - INFO - LR: [9.88e-05, 0.000988]
+23/10/2018 12:33:05 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Epoch 3/150
+23/10/2018 12:33:05 - sym_lovasz_loss_weight_1_1_cv0 - INFO - --------------------
+23/10/2018 12:36:34 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Train IOU: 0.6376, Acc: 0.8967, Loss: [0.4098, 0.525, 0.9347] at epoch 3
+23/10/2018 12:36:51 - sym_lovasz_loss_weight_1_1_cv0 - INFO - ['../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-1-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-2-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-3-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-4-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-5-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-6-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-7-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-8-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-9-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-10-Of-10']
+23/10/2018 12:36:51 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Best Val Mean IOU so far: 0.6767500000000001
+23/10/2018 12:36:51 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Val   IOU: 0.6768, Acc: 0.9257, Best Val IOU: 0.6768 at epoch 3
+23/10/2018 12:36:51 - sym_lovasz_loss_weight_1_1_cv0 - INFO - LR: [9.82e-05, 0.000982]
+23/10/2018 12:36:51 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Epoch 4/150
+23/10/2018 12:36:51 - sym_lovasz_loss_weight_1_1_cv0 - INFO - --------------------
+23/10/2018 12:36:51 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Pushing logs to git.
+23/10/2018 12:40:36 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Train IOU: 0.6735, Acc: 0.9120, Loss: [0.363, 0.4702, 0.8332] at epoch 4
+23/10/2018 12:40:54 - sym_lovasz_loss_weight_1_1_cv0 - INFO - ['../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-1-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-2-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-3-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-4-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-5-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-6-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-7-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-8-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-9-Of-10', '../salt_net/sym_lovasz_loss_weight_1_1_cv0_2018_10_23_23_23_03.ckp-chunk-10-Of-10']
+23/10/2018 12:40:54 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Best Val Mean IOU so far: 0.71
+23/10/2018 12:40:54 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Val   IOU: 0.7100, Acc: 0.9397, Best Val IOU: 0.7100 at epoch 4
+23/10/2018 12:40:54 - sym_lovasz_loss_weight_1_1_cv0 - INFO - LR: [9.76e-05, 0.000976]
+23/10/2018 12:40:54 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Epoch 5/150
+23/10/2018 12:40:54 - sym_lovasz_loss_weight_1_1_cv0 - INFO - --------------------
+23/10/2018 12:44:22 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Train IOU: 0.6824, Acc: 0.9138, Loss: [0.364, 0.46, 0.824] at epoch 5
+23/10/2018 12:44:37 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Val   IOU: 0.6926, Acc: 0.9328, Best Val IOU: 0.7100 at epoch 5
+23/10/2018 12:44:37 - sym_lovasz_loss_weight_1_1_cv0 - INFO - LR: [9.7e-05, 0.0009699]
+23/10/2018 12:44:37 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Epoch 6/150
+23/10/2018 12:44:37 - sym_lovasz_loss_weight_1_1_cv0 - INFO - --------------------
+23/10/2018 12:44:37 - sym_lovasz_loss_weight_1_1_cv0 - INFO - Pushing logs to git.
