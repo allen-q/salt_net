@@ -1220,3 +1220,14 @@ Parameter Group 1
 23/10/2018 21:45:08 - sym_lovasz_loss_cv0 - INFO - Epoch 144/150
 23/10/2018 21:45:08 - sym_lovasz_loss_cv0 - INFO - --------------------
 23/10/2018 21:45:08 - sym_lovasz_loss_cv0 - INFO - Pushing logs to git.
+23/10/2018 21:48:54 - sym_lovasz_loss_cv0 - INFO - Train IOU: 0.8571, Acc: 0.9775, Loss: [0.0858, 0.0613, 0.1471] at epoch 144
+23/10/2018 21:49:09 - sym_lovasz_loss_cv0 - INFO - Val   IOU: 0.8141, Acc: 0.9570, Best Val IOU: 0.8150 at epoch 144
+23/10/2018 21:49:09 - sym_lovasz_loss_cv0 - INFO - LR: [5.5e-06, 5.52e-05]
+23/10/2018 21:49:09 - sym_lovasz_loss_cv0 - INFO - Epoch 145/150
+23/10/2018 21:49:09 - sym_lovasz_loss_cv0 - INFO - --------------------
+23/10/2018 21:52:39 - sym_lovasz_loss_cv0 - INFO - Train IOU: 0.8540, Acc: 0.9760, Loss: [0.0836, 0.0625, 0.1461] at epoch 145
+23/10/2018 21:52:54 - sym_lovasz_loss_cv0 - INFO - Val   IOU: 0.8139, Acc: 0.9576, Best Val IOU: 0.8150 at epoch 145
+23/10/2018 21:52:54 - sym_lovasz_loss_cv0 - INFO - LR: [4.7e-06, 4.68e-05]
+23/10/2018 21:52:54 - sym_lovasz_loss_cv0 - INFO - Epoch 146/150
+23/10/2018 21:52:54 - sym_lovasz_loss_cv0 - INFO - --------------------
+23/10/2018 21:52:54 - sym_lovasz_loss_cv0 - INFO - Pushing logs to git.
