@@ -735,3 +735,16 @@ Parameter Group 1
 23/10/2018 19:15:06 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - Epoch 106/150
 23/10/2018 19:15:06 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - --------------------
 23/10/2018 19:15:06 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - Pushing logs to git.
+23/10/2018 19:18:50 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - Train IOU: 0.8062, Acc: 0.9460, Loss: [0.035, 0.2563, 0.2913] at epoch 106
+23/10/2018 19:19:09 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - ['../salt_net/sym_lovasz_loss_weight_1_0.1_cv0_2018_10_23_23_25_50.ckp-chunk-1-Of-10', '../salt_net/sym_lovasz_loss_weight_1_0.1_cv0_2018_10_23_23_25_50.ckp-chunk-2-Of-10', '../salt_net/sym_lovasz_loss_weight_1_0.1_cv0_2018_10_23_23_25_50.ckp-chunk-3-Of-10', '../salt_net/sym_lovasz_loss_weight_1_0.1_cv0_2018_10_23_23_25_50.ckp-chunk-4-Of-10', '../salt_net/sym_lovasz_loss_weight_1_0.1_cv0_2018_10_23_23_25_50.ckp-chunk-5-Of-10', '../salt_net/sym_lovasz_loss_weight_1_0.1_cv0_2018_10_23_23_25_50.ckp-chunk-6-Of-10', '../salt_net/sym_lovasz_loss_weight_1_0.1_cv0_2018_10_23_23_25_50.ckp-chunk-7-Of-10', '../salt_net/sym_lovasz_loss_weight_1_0.1_cv0_2018_10_23_23_25_50.ckp-chunk-8-Of-10', '../salt_net/sym_lovasz_loss_weight_1_0.1_cv0_2018_10_23_23_25_50.ckp-chunk-9-Of-10', '../salt_net/sym_lovasz_loss_weight_1_0.1_cv0_2018_10_23_23_25_50.ckp-chunk-10-Of-10']
+23/10/2018 19:19:09 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - Best Val Mean IOU so far: 0.81875
+23/10/2018 19:19:09 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - Val   IOU: 0.8187, Acc: 0.9613, Best Val IOU: 0.8187 at epoch 106
+23/10/2018 19:19:09 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - LR: [3.32e-05, 0.0003316]
+23/10/2018 19:19:09 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - Epoch 107/150
+23/10/2018 19:19:09 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - --------------------
+23/10/2018 19:22:40 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - Train IOU: 0.8076, Acc: 0.9464, Loss: [0.0351, 0.2525, 0.2876] at epoch 107
+23/10/2018 19:22:55 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - Val   IOU: 0.8087, Acc: 0.9571, Best Val IOU: 0.8187 at epoch 107
+23/10/2018 19:22:55 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - LR: [3.25e-05, 0.0003248]
+23/10/2018 19:22:55 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - Epoch 108/150
+23/10/2018 19:22:55 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - --------------------
+23/10/2018 19:22:55 - sym_lovasz_loss_weight_1_0.1_cv0 - INFO - Pushing logs to git.
