@@ -632,3 +632,17 @@ Parameter Group 1
 23/10/2018 14:58:19 - sym_lovasz_loss_cv0 - INFO - Epoch 40/150
 23/10/2018 14:58:19 - sym_lovasz_loss_cv0 - INFO - --------------------
 23/10/2018 14:58:19 - sym_lovasz_loss_cv0 - INFO - Pushing logs to git.
+23/10/2018 15:02:05 - sym_lovasz_loss_cv0 - INFO - Train IOU: 0.7808, Acc: 0.9473, Loss: [0.204, 0.102, 0.306] at epoch 40
+23/10/2018 15:02:24 - sym_lovasz_loss_cv0 - INFO - ['../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-1-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-2-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-3-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-4-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-5-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-6-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-7-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-8-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-9-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-10-Of-10']
+23/10/2018 15:02:24 - sym_lovasz_loss_cv0 - INFO - Best Val Mean IOU so far: 0.7997500000000001
+23/10/2018 15:02:24 - sym_lovasz_loss_cv0 - INFO - Val   IOU: 0.7998, Acc: 0.9608, Best Val IOU: 0.7998 at epoch 40
+23/10/2018 15:02:24 - sym_lovasz_loss_cv0 - INFO - Skip pushing model to git as there's no improvement
+23/10/2018 15:02:24 - sym_lovasz_loss_cv0 - INFO - LR: [7.56e-05, 0.0007564]
+23/10/2018 15:02:24 - sym_lovasz_loss_cv0 - INFO - Epoch 41/150
+23/10/2018 15:02:24 - sym_lovasz_loss_cv0 - INFO - --------------------
+23/10/2018 15:05:55 - sym_lovasz_loss_cv0 - INFO - Train IOU: 0.7815, Acc: 0.9477, Loss: [0.2018, 0.1014, 0.3031] at epoch 41
+23/10/2018 15:06:10 - sym_lovasz_loss_cv0 - INFO - Val   IOU: 0.7805, Acc: 0.9549, Best Val IOU: 0.7998 at epoch 41
+23/10/2018 15:06:10 - sym_lovasz_loss_cv0 - INFO - LR: [7.5e-05, 0.0007502]
+23/10/2018 15:06:10 - sym_lovasz_loss_cv0 - INFO - Epoch 42/150
+23/10/2018 15:06:10 - sym_lovasz_loss_cv0 - INFO - --------------------
+23/10/2018 15:06:10 - sym_lovasz_loss_cv0 - INFO - Pushing logs to git.
