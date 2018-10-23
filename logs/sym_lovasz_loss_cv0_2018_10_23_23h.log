@@ -1007,3 +1007,16 @@ Parameter Group 1
 23/10/2018 19:16:31 - sym_lovasz_loss_cv0 - INFO - Epoch 106/150
 23/10/2018 19:16:31 - sym_lovasz_loss_cv0 - INFO - --------------------
 23/10/2018 19:16:31 - sym_lovasz_loss_cv0 - INFO - Pushing logs to git.
+23/10/2018 19:20:21 - sym_lovasz_loss_cv0 - INFO - Train IOU: 0.8394, Acc: 0.9719, Loss: [0.1145, 0.0725, 0.187] at epoch 106
+23/10/2018 19:20:37 - sym_lovasz_loss_cv0 - INFO - Val   IOU: 0.8020, Acc: 0.9549, Best Val IOU: 0.8106 at epoch 106
+23/10/2018 19:20:37 - sym_lovasz_loss_cv0 - INFO - LR: [3.32e-05, 0.0003316]
+23/10/2018 19:20:37 - sym_lovasz_loss_cv0 - INFO - Epoch 107/150
+23/10/2018 19:20:37 - sym_lovasz_loss_cv0 - INFO - --------------------
+23/10/2018 19:24:07 - sym_lovasz_loss_cv0 - INFO - Train IOU: 0.8392, Acc: 0.9699, Loss: [0.114, 0.0715, 0.1855] at epoch 107
+23/10/2018 19:24:26 - sym_lovasz_loss_cv0 - INFO - ['../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-1-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-2-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-3-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-4-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-5-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-6-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-7-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-8-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-9-Of-10', '../salt_net/sym_lovasz_loss_cv0_2018_10_23_23_03_42.ckp-chunk-10-Of-10']
+23/10/2018 19:24:26 - sym_lovasz_loss_cv0 - INFO - Best Val Mean IOU so far: 0.815
+23/10/2018 19:24:26 - sym_lovasz_loss_cv0 - INFO - Val   IOU: 0.8150, Acc: 0.9594, Best Val IOU: 0.8150 at epoch 107
+23/10/2018 19:24:26 - sym_lovasz_loss_cv0 - INFO - LR: [3.25e-05, 0.0003248]
+23/10/2018 19:24:26 - sym_lovasz_loss_cv0 - INFO - Epoch 108/150
+23/10/2018 19:24:26 - sym_lovasz_loss_cv0 - INFO - --------------------
+23/10/2018 19:24:26 - sym_lovasz_loss_cv0 - INFO - Pushing logs to git.
