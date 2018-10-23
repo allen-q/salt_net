@@ -1,0 +1,4 @@
+23/10/2018 12:21:56 - sym_lovasz_loss_weight_0.5_cv0 - INFO - np.sum(X_train_ids): 6319371
+23/10/2018 12:21:56 - sym_lovasz_loss_weight_0.5_cv0 - INFO - np.sum(X_val_ids): 1678629
+23/10/2018 12:21:59 - sym_lovasz_loss_weight_0.5_cv0 - INFO - sym_lovasz_loss_weight_0.5_cv0, based on salt_model_v37.4_high_lovasz_loss. 5 folds CV.
+23/10/2018 12:22:25 - sym_lovasz_loss_weight_0.5_cv0 - INFO - sym_lovasz_loss_weight_0.5_cv0, based on salt_model_v37.4_high_lovasz_loss. use symetric lavasz loss. Set lavasz loss weight to 0.5
